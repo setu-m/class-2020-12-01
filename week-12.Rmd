@@ -1,0 +1,48 @@
+---
+title: "Week 12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(PPBDS.data)
+library(rstanarm)
+library(tidyverse)
+
+# Same data clean up as last week.
+
+week_12 <- shaming %>% 
+  mutate(age = 2006 - birth_year) %>% 
+  mutate(treatment = fct_relevel(treatment, "Control")) %>% 
+  mutate(solo = ifelse(hh_size == 1, TRUE, FALSE)) %>% 
+  select(-general_04, -no_of_names, -birth_year, -hh_size) 
+```
+
+
+## Scene 1
+
+**Prompt:** Create a fitted model object called `fit_1` using this formula or, if you want, a formula which you prefer. You are trying to model `age` as a function of various parameters.
+
+age ~ sex + solo + primary_04 + primary_06 + treatment + sex:solo
+                    
+* Is this a causal or predictive model? Why?
+
+* Interpret the fitted model. 
+
+* Should we keep all these variables? And the interaction term?
+
+* Are you surprised about the meaningfulness, or lack thereof, for the treatment variables?
+
+
+
+
+## Scene 2
+
+**Prompt:** Provide a posterior probability distribution for the expected difference in ages between those who live alone and those who do not. (Hint: Given that we are asking for an expected value, use `posterior_epred()`.)
+
+
+
+
+
+
+
