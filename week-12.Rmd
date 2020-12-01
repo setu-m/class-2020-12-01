@@ -23,11 +23,23 @@ week_12 <- shaming %>%
 
 **Prompt:** Create a fitted model object called `fit_1` using this formula or, if you want, a formula which you prefer. You are trying to model `age` as a function of various parameters.
 
+```{r}
+fit <- stan_glm(data = week_12,
+                age ~ sex + solo + primary_04 + primary_06 + treatment + sex:solo,
+                refresh = 0)
+```
+
 age ~ sex + solo + primary_04 + primary_06 + treatment + sex:solo
                     
 * Is this a causal or predictive model? Why?
+predictive model; we can't really change our age no matter what we do.
 
 * Interpret the fitted model. 
+intercept: age of the average age for women do not live alone who did not vote in the primary and did not receive any treatment
+male: predicted change in outcome: if you are a man who does not live alone and vote in the primary and did not receive any treatment, add that value to the intercept to get your age
+solo alone: if you are a female who lived alone and did not have any treatment, you add that value to your age
+interaction term: you can have the slope of men who live alone compared to women who live alone; we are holding male constant;
+
 
 * Should we keep all these variables? And the interaction term?
 
